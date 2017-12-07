@@ -46,8 +46,11 @@ public class MainActivity extends AppCompatActivity {
         students.add(new Student("Oliver",true));
 
         for (int i = 0; i <100 ; i++) {
-            students.add(new Student("Student" + i,true));
-
+            if (i%2==0) {
+                students.add(new Student("Student" + i, true));
+            } else {
+                students.add(new Student("Student" + i,false));
+            }
         }
         return students;
     }
