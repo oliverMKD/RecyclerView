@@ -1,11 +1,15 @@
 package com.oli.recyclerview;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +23,19 @@ import butterknife.ButterKnife;
 
 public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAdapter.ViewHolder> {
 
+
+    Context context;
     List<Student> studentList = new ArrayList<>();
 
     public void setItems(List<Student> students) {
         studentList = students;
+    }
+
+    public CustomStudentsAdapter(List<Student> studentList) {
+        this.studentList = studentList;
+    }
+    public CustomStudentsAdapter(Context context2){
+        context = context2;
     }
 
     @Override
@@ -41,9 +54,14 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
         holder.textView.setText(student.sName);
         if (student.issOnline()) {
             holder.textView2.setText("online");
+            holder.textView2.setBackgroundColor(Color.GRAY);
+            holder.textView2.setTextColor(Color.CYAN);
         } else {
             holder.textView2.setText("Offline");
+            holder.textView2.setBackgroundColor(Color.BLUE);
+            holder.textView2.setTextColor(Color.CYAN);
         }
+        Picasso.with(context).load("http://www.abc.net.au/news/image/6473316-3x2-340x227.jpg").fit().centerInside().into(holder.slika);
     }
 
 
@@ -56,6 +74,8 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.slika)
+        ImageView slika;
         @BindView(R.id.text)
         TextView textView;
         @BindView(R.id.text2)

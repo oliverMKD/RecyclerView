@@ -11,9 +11,10 @@
         android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/slika"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/images"/>
+        />
     <TextView
         android:layout_margin="15dp"
         android:id="@+id/text"

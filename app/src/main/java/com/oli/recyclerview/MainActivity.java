@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        CustomStudentsAdapter adapter =  new CustomStudentsAdapter();
+        CustomStudentsAdapter adapter =  new CustomStudentsAdapter(this);
 
         adapter.setItems(generateList());
         recyclerView.setHasFixedSize(true);
