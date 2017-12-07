@@ -17,11 +17,11 @@ import butterknife.ButterKnife;
  * Created by oliver on 12/7/2017.
  */
 
-public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAdapter.ViewHolder>  {
+public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAdapter.ViewHolder> {
 
     List<Student> studentList = new ArrayList<>();
 
-    public void setItems(List<Student>students){
+    public void setItems(List<Student> students) {
         studentList = students;
     }
 
@@ -30,17 +30,25 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View view = inflater.inflate(R.layout.recyclerviewrow,parent,false);
+        View view = inflater.inflate(R.layout.recyclerviewrow, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-    Student student = studentList.get(position);
-    holder.textView.setText(student.sName);
-
+        Student student = studentList.get(position);
+        holder.textView.setText(student.sName);
+        if (student.issOnline()) {
+            holder.textView2.setText("online");
+        } else {
+            holder.textView2.setText("Offline");
+        }
     }
+
+
+
+
 
     @Override
     public int getItemCount() {
@@ -50,6 +58,8 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.text)
         TextView textView;
+        @BindView(R.id.text2)
+        TextView textView2;
 
         public ViewHolder(View itemView) {
             super(itemView);
